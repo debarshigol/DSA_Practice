@@ -17,40 +17,35 @@ public class BinarySearch {
 		System.out.println("Enter your number: ");
 		Scanner input = new Scanner(System.in);
 		int target = input.nextInt();
+		int vaule = findElement(arr, target);
+		if(vaule==-1) {
+			System.out.println("Element not found!");
+		}
+		else {
+			System.out.println("Target is found at index: "+vaule);
+		}
 		
+	}
+	
+	public static int findElement(int[] arr, int target) {
 		int start = 0;
 		int end = arr.length-1;
 		int count = 0;
-		
-		
 		while(start<=end) {
-			int mid = (start+end)/2;
-			if(arr[start]==target) {
-				System.out.printf("Number %d found at index %d",target,start);
-				break;
-			}
-			else if(arr[end]==target) {
-				System.out.printf("Number %d found at index %d",target,end);
-				break;
-			}
-			else if(arr[mid]==target) {
-				count+=1;
-				System.out.printf("Number %d found at index %d",target,mid);
-				break;
+			int mid  = (start+end)/2;
+			if(arr[mid] == target) {
+				return mid;
 			}
 			else if(arr[mid]<target) {
-				start = mid;
-				count+=1;
+				start = mid+1;
 			}
 			else {
-				end = mid;
-				count+=1;
+				end = mid-1;
 			}
-			
 		}
-		System.out.println();
-		System.out.println(count);
+		return -1;
 
 	}
 
 }
+
